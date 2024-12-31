@@ -30,8 +30,8 @@ label good_ending:
         У неё сын там отучился, сейчас фирму открыл, деньги куры не клюют, может ты туда поступишь? 
         '''
     
-    scene radic
-    show chara happymerch
+    scene bg radic
+    show chara merch
     chara "Я поступлю туда и стану успешным!"
 
     scene absolute cinema with fade
@@ -41,7 +41,8 @@ label good_ending:
 
 
 label bad_ending:
-
+    stop music fadeout 1.0
+    play music final fadein 0.2 loop volume 0.3
     scene black with fade
     show skelet fury at center with easeinright:
         linear 0.0 xzoom -1.0 yzoom 1.0
@@ -59,12 +60,13 @@ label bad_ending:
     show chara amazed at screen_left with easeinleft
     chara "Никита, это ты?"
 
-    show developer human at screen_right with easeinright
+    show friend at screen_right with easeinright
     dev "Привет, Саша, это я, мне удалось выбраться из ужасающего леса "
 
     show chara happy
     chara "Что нового? Как дела?"
 
+    show friend smile
     dev 'Всё хорошо, вот учусь в ИРИТ-РТФ, зарплата-шестизначная сумма, 
                 я добился чего хотел, прости пора идти, работа и учёба, понимаешь?'
 

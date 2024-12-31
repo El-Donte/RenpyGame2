@@ -1,4 +1,6 @@
 label strange_world:
+    stop music fadeout 1.0
+    play music forestmusic fadein 0.2 loop volume 0.3
     scene bg forest with fade
     '''
     Дорога по ужасающему лесу заняла достаточно много времени, 
@@ -40,7 +42,7 @@ label strange_world:
 
     show chara write
     chara 'Напишу о том, как сильно я хочу домой...'
-
+    play sound fall 
     scene bg house with fade
     show chara amazed at screen_left with dissolve 
     chara 'ААА... Что такое огромное упало??? ДОМ???'
@@ -54,7 +56,8 @@ label strange_world:
     show chara write
     chara 'Сперва, мне определённо нужен фонарик, здесь очень темно, мало ли ещё какие-нибудь предметы на голову будут падать...'
 
-    show chara exited
+    show chara withlight:
+        linear 0.0 xzoom -1.0 yzoom 1.0
     chara 'Впереди ещё три источника света'
 
     jump farmer

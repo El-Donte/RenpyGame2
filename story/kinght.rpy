@@ -1,6 +1,9 @@
-$ kinghtBool = False
+image formula = "./quiz/question"
 
 label kinght:
+    stop music fadeout 1.0
+    play music knightmusic fadein 0.2 loop volume 0.3
+    $ kinghtBool = False
     scene bg castle with dissolve
 
     show chara calm at screen_left with easeinleft
@@ -37,7 +40,8 @@ label kinght:
     jump final
 
 label knight_dev:
-    
+    stop music fadeout 1.0
+    play music knightmusic fadein 0.2 loop volume 0.3
     $ kinghtBool = True
 
     scene bg castle with dissolve
@@ -70,6 +74,7 @@ label knight_dev:
         zoom 1.2
     kinght 'Ого, интересный у тебя блокнот...'
 
+    play sound ypee
     show dev love
     dev 'Попробуй из неё по дракону пульнуть'
 
@@ -81,11 +86,37 @@ label knight_dev:
 
     show dev idea
     dev 'Я могу пофиксить этот баг, нужна всего лишь формула дальности полёта'
+    $ score = 0
+    $ done = False
+    hide chara
+    hide dev
+    hide knight
+    show question at image_place:
+        zoom 4
+    
+    $ gala = True
+    while not done:
+        $ score = 0
+        "Выберите правильную версию формулы"
+        menu:
+            "{image=./quiz/wrong1.png}":
+                pass
+            "{image=./quiz/rightFormula.png}":
+                $ score += 1
+                pass
+            "{image=./quiz/wrong2.png}":
+                pass
+        
+        if(score == 1):
+            $ done = True
+        else:
+            "Не правильная версия формулы. Заново))))"
+    $ gala = False
 
-    #мини игра
     $ quick_menu = False
     scene bg castle cannon with fade
     pause 1.0
+    play sound cannon
     scene bg castle destroied with fade
     pause 1.0
     scene bg castle destroied2 with fade
@@ -95,12 +126,13 @@ label knight_dev:
 
     show knight calm at character_right with easeinright:
             zoom 1.1
+    play sound ypee
     kinght 'А из вас, ребята получился отличный дуэт! Ну а мне пора совершать подвиг, удачи вам'
 
     show dev happy at more_right with easeinright:
             zoom 1.1
     dev 'И тебе всего хорошего! Нам пора идти дальше.'
-
+    
     jump final
 
 

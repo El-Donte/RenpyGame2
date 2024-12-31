@@ -1,28 +1,33 @@
-$ developerBool = False
-
 label developer:
+    stop music fadeout 1.0
+    play music forestmusic fadein 0.2 loop volume 0.3
+    $ developerBool = False
     scene bg forest2
 
-    show chara withligth at screen_left with easeinleft
+    show chara withlight at screen_left with easeinleft:
+        linear 0.0 xzoom -1.0 yzoom 1.0
+
     chara 'Свет всё ближе и ближе, здесь кто-нибудь есть?'
 
     show terminal light at screen_right with easeinright:
         linear 0.0 xzoom -1.0 yzoom 1.0
         zoom 1.2
     
-    show chara question
+    show chara question:
+        linear 0.0 xzoom 1.0 yzoom 1.0
     chara "Это терминал?"
 
     extend "Стоит ли нажимать кнопку на терминале?"
 
     menu:
         "1. Да":
+            stop music fadeout 1.0
+            play music devmusic fadein 0.2 loop volume 0.3
             scene bg comp2 with fade
 
             chara "Где я? Здесь кто-нибудь есть?"
             show chara sad at screen_left with easeinleft
             chara "У меня от яркости сейчас глаза выпадут. Я что в раю?"
-            show chara angry
             chara "Видимо зря я нажал кнопку на том автомате, мне теперь не выбраться отсюда!"
 
             show bg comp with dissolve
@@ -47,15 +52,58 @@ label developer:
             menu:
                 'Могу ли я взглянуть на эту задачу и помочь тебе?':
                     $ developerBool = True
+                    $ score = 0
+                    $ done = False
+                    hide chara
+                    hide dev
 
-                    #мини игра
+                    while not done:
+                        $ score = 0
+                        "Выберите правильное выражеине лица для злости"
+                        menu:
+                            "{image=./quiz/devAngry.png}":
+                                $ score += 1
+                                pass
+                            "{image=./quiz/devFind.png}":
+                                pass
+                            "{image=./quiz/devHappy.png}":
+                                pass
+                        
+                        "Выберите правильное выражеине лица для грусти"
+                        menu:
+                            "{image=./quiz/devAngry.png}":
+                                pass
+                            "{image=./quiz/devSad.png}":
+                                $ score += 1
+                                pass
+                            "{image=./quiz/devHappy.png}":
+                                pass
+                        
+                        "Выберите правильное выражеине лица для радости"
+                        menu:
+                            "{image=./quiz/devQuestion.png}":
+                                pass
+                            "{image=./quiz/devFind.png}":
+                                pass
+                            "{image=./quiz/devHappy.png}":
+                                $ score += 1
+                                pass
+                        
+                        if(score == 3):
+                            $ done = True
+                        else:
+                            "Не все эмоции выбраны правильно. Заново))))"
+
                     show chara happy at screen_left with easeinleft
                     show dev happy at screen_right with easeinright
 
+                    play sound ypee
                     dev 'Спасибо тебе за помощь! Раз уж я теперь освободился, давай я присоединюсь к твоему путешествию, может и я тебе помогу!'
 
                     chara 'Давай вместе отправимся в путь, следующий источник свете недалеко!'
 
+                    stop music fadeout 1.0
+                    play music forestmusic fadein 0.2 loop volume 0.3
                     scene bg forest
                     show chara happy at screen_left with easeinleft
                     show dev assend at screen_right with easeinright:

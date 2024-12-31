@@ -15,3 +15,6 @@ init:
     $ more_right = Position(xalign=1.1, yalign=1.0)
     $ character_right = Position(xalign=0.7, yalign=1.0)
     $ character_left = Position(xalign=0.3, yalign=1.0)
+    $ image_place = Position(xalign=1.0, yalign=0.4)
+    $ puddle = Position(xalign=1.0, yalign=0.7)
+

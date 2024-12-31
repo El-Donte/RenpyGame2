@@ -1,6 +1,6 @@
 ﻿label start:
     stop music fadeout 1
-    play music musbacground fadein 1 volume 0.5
+    play music musbacground fadein 1 volume 0.4
     scene black
 
     '''
@@ -48,7 +48,7 @@
     scene bg path with fade
 
     show chara calm at screen_left with easeinleft
-    play sound birds fadein 0.2 loop volume 0.3
+    play sound birds fadein 0.2 loop volume 1
     chara "Как же тут красиво и спокойно, птички поют, светит капризное солнце"
 
     scene bg station with fade

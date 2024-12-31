@@ -1,6 +1,9 @@
-$ farmerBool = False
+
 
 label farmer:
+    stop music fadeout 1.0
+    play music farmermusic fadein 0.2 loop volume 0.4
+    $ farmerBool = False
     scene bg farm2 with fade
 
     show chara question at screen_left with easeinleft
@@ -17,12 +20,13 @@ label farmer:
     
     show farmer scared
     farmer 'Саша, прячься!'
-
+    play sound crows 
     hide chara
     hide farmer
+
     show bg ravens with vpunch
     $ quick_menu = False
-    pause 1.0
+    pause 2.0
     $ quick_menu = True
     #убрать менюшку и звук ворон
     
@@ -59,13 +63,14 @@ label farmer:
 
             
             call puzzle from _call_puzzle    
-            #мини игра
+
             scene bg farmscarecrow with fade
             show chara happy at screen_left with easeinleft
-            show farmer apple at screen_right with easeinright
+            show farmer calm at screen_right with easeinright
+            
+            play sound ypee
             farmer 'Спасибо большое, Саша, моя проблема решена! Возьми в знак благодарности золотое зачарованное яблоко, оно сделает тебя неуязвимым!'
 
-            
             chara 'Я был рад помочь, Маша, мне пора идти дальше, надеюсь, ещё повстречаемся'
             pass
 

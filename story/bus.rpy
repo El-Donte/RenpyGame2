@@ -1,6 +1,9 @@
 label bus:
-    scene bg buswindow with fade
+    stop music fadeout 1
+    play sound bus fadein 0.3 volume 1.2
+    play music busmusic loop fadein 0.5 volume 0.3
     
+    scene bg buswindow with fade
     show chara calm at screen_left with easeinleft
     chara '''
         Как же хорошо и беззаботно в деревне...

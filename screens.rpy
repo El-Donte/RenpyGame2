@@ -3,7 +3,7 @@
 ################################################################################
 
 init offset = -1
-
+define gala = False
 
 ################################################################################
 ## Styles
@@ -206,12 +206,19 @@ style input:
 ## https://www.renpy.org/doc/html/screen_special.html#choice
 
 screen choice(items):
-    style_prefix "choice"
-
-    vbox:
-        for i in items:
-            textbutton i.caption action i.action
-
+    if gala:
+        style_prefix "choice"
+        vbox:
+            xalign 0.25
+            ypos 465
+            for i in items:
+                textbutton i.caption action i.action
+    else:
+        style_prefix "choice"
+        vbox:
+            for i in items:
+                textbutton i.caption action i.action
+    
 
 ## When this is true, menu captions will be spoken by the narrator. When false,
 ## menu captions will be displayed as empty buttons.
@@ -219,12 +226,20 @@ define config.narrator_menu = True
 
 
 style choice_vbox is vbox
+
 style choice_button is button
 style choice_button_text is button_text
 
 style choice_vbox:
     xalign 0.5
     ypos 405
+    yanchor 0.5
+
+    spacing gui.choice_spacing
+
+style choice_vbox2:
+    xalign 0.3
+    ypos 705
     yanchor 0.5
 
     spacing gui.choice_spacing

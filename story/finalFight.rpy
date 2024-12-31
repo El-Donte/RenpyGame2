@@ -1,5 +1,7 @@
 label final:
-    scene black with fade
+    stop music fadeout 1.0
+    play music fightmusic loop volume 0.3
+    scene bg forest with fade
     show laziness sleep at screen_right with easeinright
     laziness '''
             Здравствуй, Саша, узнаёшь меня? 
@@ -21,10 +23,10 @@ label final:
             '''
     
     if farmerBool:
-        show chara angry at screen_left with easeinleft
+        show chara calm at screen_left with easeinleft
         chara '{b}Достаточно!{/b}'
 
-        show chara apple
+        show chara idea
         chara '''
             {b}Да{/b}, я не идеален, 
             
@@ -37,9 +39,8 @@ label final:
 
         chara 'Тебе меня не остановить!'
 
-        show chara glow:
-            zoom 1.1
-        show laziness puddle
+        show chara glow with dissolve
+        show laziness puddle at puddle with dissolve 
         laziness "Ну ничего, мои братья с тобой разберутся!"
 
     else:
@@ -47,8 +48,8 @@ label final:
         chara "Мне так лень тебе что-то отвечать"
         jump bad
 
-    scene black with dissolve
-    show badthoungts at center:
+    scene bg forest2 with fade
+    show badthoungts at center with dissolve:
         zoom 1.3
     
     bad_thoughts '''
@@ -66,16 +67,31 @@ label final:
 
                 Я помещу тебя в игру с этими монстрами, выиграешь-победишь их и в этом мире
                 '''
-        #mini game pacman
+
+        show space
+        stop music fadeout 1.0
+        play music space loop fadein 0.2 volume 0.3 
+        call screen space_invaders
+        $ is_win = False
+        while not is_win:
+            $ is_win = _return
+            if is_win:
+                play sound ypee
+                "Ты победил"
+            else:
+                "Еще раз)))"
+                call screen space_invaders
+
     else:
         chara "{b}Прекратите{/b}"
         bad_thoughts "{b}АХАХАХА МЫ ТЕБЯ ПОГЛОТИМ ТЫ НЕУДАЧНИК, У ТЕБЯ НИЧЕГО НЕ ПОЛУЧИТСЯ{/b}"
         jump bad
 
     
-    scene black with dissolve
-
-    show chara tired at screen_left with easeinleft
+    scene bg forest with dissolve
+    stop music fadeout 1.0
+    play music fightmusic loop fadein 0.2 volume 0.3 
+    show chara scared at screen_left with easeinleft
     chara 'Силы уже на исходе, но кто это? Ещё один монстр?'
 
     show fear at screen_right with easeinright:
@@ -92,22 +108,25 @@ label final:
         show chara scared with dissolve
         chara 'Что же делать, сил уже просто нет'
 
-        #звук выстрела 
+        
         show knight cannon at character_left with easeinleft:
             linear 0.0 xzoom -1.0 yzoom 1.0
             zoom 1.2
         kinght "Мне кажется или тебе нужна была моя помощь?"
-
+        
+        play sound cannon 
         show fear shotted with vpunch
         pause 1.5
         hide fear with dissolve
 
         show chara happy
         chara "Вова, ты победил его!"
-
+        play sound ypee
         show dev love at screen_right with easeinright:
             zoom 1.1
         
+        stop music fadeout 1.0
+        play music final fadein 0.2 loop volume 0.3
         dev "Гони плохие мысли прочь, теперь ты сам всё сможешь!"
         
         kinght "Да, ничего не бойся, помни, что ты кузнец своей судьбы!"
@@ -124,7 +143,6 @@ label final:
             zoom 1.4
         dev "Мы будем гостить у тебя во снах, а сейчас тебе пора."
 
-        show chara wave
         chara "Прощайте!"
 
         scene bg bus with fade
@@ -146,7 +164,10 @@ label bad:
 
 
 
+screen space_invaders:
+    default game = SpaceInvaders()
 
+    add game
     
 
 
